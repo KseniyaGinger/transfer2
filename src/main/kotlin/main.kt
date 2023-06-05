@@ -1,9 +1,10 @@
 fun main() {
 
     var paymentSystem = "VK Pay"
-    var monthlySum = 0
-    var dailySum = 0
-    var amount = 0
+    var monthlySum = 10000
+    var dailySum = 200
+    var amount = 750
+
 
     fun checkLimits(paymentSystem: String, monthlySum: Int, dailySum: Int, amount: Int): Boolean {
         when (paymentSystem) {
@@ -36,17 +37,20 @@ fun main() {
     }
 
     if (checkLimits(paymentSystem, monthlySum, dailySum, amount)) {
-        var tax = when (paymentSystem) {
-            "Mastercard", "Maestro" -> if (monthlySum + amount > 75000) (amount * 0.006 + 20).toInt() else 0
-            "Visa", "MIR" -> if (amount * 0.0075 >= 35) (amount * 0.0075).toInt() else 35
-            else -> {
-                0
-            }
-        }
+        var tax = calculateTax(paymentSystem, monthlySum,dailySum,amount)
         println(tax)
     }
 }
 
+fun calculateTax(paymentSystem: String, monthlySum: Int, dailySum: Int, amount:Int): Int {
+    return when (paymentSystem) {
+        "Mastercard", "Maestro" -> if (monthlySum + amount > 75000) (amount * 0.006 + 20).toInt() else 0
+        "Visa", "MIR" -> if (amount * 0.0075 >= 35) (amount * 0.0075).toInt() else 35
+        else -> {
+            0
+        }
+    }
+}
 
 
 
