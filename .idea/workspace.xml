@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5d01a34d-ee30-4b87-8149-963d42440eec" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/kotlin/MainKtTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="5d01a34d-ee30-4b87-8149-963d42440eec" name="Changes" comment="add autotests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/kotlin/MainKtTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/MainKtTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +19,16 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -64,10 +72,11 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="gradle test" />
+      <command value="gradle jacocoTestReport" />
     </option>
   </component>
-  <component name="RunManager" selected="Gradle.MainKtTest.calculateTaxShouldTakeTax">
-    <configuration name="MainKtTest.calculateTax" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.MainKtTest.testCheckLimits_PassingLimits">
+    <configuration name="MainKtTest.testCheckLimits_Mastercard_Maestro_DailyLimit" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -80,7 +89,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;MainKtTest.calculateTax&quot;" />
+            <option value="&quot;MainKtTest.testCheckLimits_Mastercard_Maestro_DailyLimit&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -90,7 +99,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="MainKtTest.calculateTaxShouldTakeTax" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="MainKtTest.testCheckLimits_PassingLimits" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -103,7 +112,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;MainKtTest.calculateTaxShouldTakeTax&quot;" />
+            <option value="&quot;MainKtTest.testCheckLimits_PassingLimits&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -113,7 +122,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="transfer2 [test]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="MainKtTest.testCheckLimits_UnknownPaymentSystem" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -124,29 +133,71 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="test" />
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;MainKtTest.testCheckLimits_UnknownPaymentSystem&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MainKt" />
-      <module name="transfer2.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="MainKtTest.testCheckLimits_VKPay_AmountLimit" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;MainKtTest.testCheckLimits_VKPay_AmountLimit&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="MainKtTest.testCheckLimits_VKPay_MonthlyLimit" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;MainKtTest.testCheckLimits_VKPay_MonthlyLimit&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.MainKtTest.calculateTaxShouldTakeTax" />
-        <item itemvalue="Kotlin.MainKt" />
-        <item itemvalue="Gradle.MainKtTest.calculateTax" />
-        <item itemvalue="Gradle.transfer2 [test]" />
+        <item itemvalue="Gradle.MainKtTest.testCheckLimits_PassingLimits" />
+        <item itemvalue="Gradle.MainKtTest.testCheckLimits_UnknownPaymentSystem" />
+        <item itemvalue="Gradle.MainKtTest.testCheckLimits_VKPay_AmountLimit" />
+        <item itemvalue="Gradle.MainKtTest.testCheckLimits_VKPay_MonthlyLimit" />
+        <item itemvalue="Gradle.MainKtTest.testCheckLimits_Mastercard_Maestro_DailyLimit" />
       </list>
     </recent_temporary>
   </component>
@@ -161,8 +212,16 @@
       <workItem from="1684955825711" duration="11522000" />
       <workItem from="1685979357112" duration="17000" />
       <workItem from="1685979402361" duration="21000" />
-      <workItem from="1685979433926" duration="7382000" />
+      <workItem from="1685979433926" duration="20162000" />
     </task>
+    <task id="LOCAL-00001" summary="create autotests">
+      <created>1685998898398</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1685998898398</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,5 +237,14 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="create autotests" />
+    <MESSAGE value="add autotests" />
+    <option name="LAST_COMMIT_MESSAGE" value="add autotests" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/transfer2$MainKt.ic" NAME="MainKt Coverage Results" MODIFIED="1686003177923" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/transfer2$MainKtTest.ic" NAME="MainKtTest Coverage Results" MODIFIED="1686003039434" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
