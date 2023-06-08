@@ -3,7 +3,7 @@ import org.junit.Test
 
 class MainKtTest {
 
-    //1 "Mastercard", "Maestro", "Visa", "MIR" (monthlySum + dailySum + amount > 600000)
+ //1 "Mastercard", "Maestro", "Visa", "MIR" (monthlySum + dailySum + amount > 600000)
     @Test
     fun checkLimits_1() {
         var paymentSystem = "Mastercard"
@@ -138,7 +138,7 @@ class MainKtTest {
         assertEquals(0,result)
     }
 
-    //12 "Visa", "MIR" (amount * 0.0075 >= 35)
+    //12 "Visa", "MIR" (amount * 0.0075 > 35)
     @Test
     fun calculateTax_2() {
         var paymentSystem = "Visa"
@@ -149,6 +149,7 @@ class MainKtTest {
         var result = calculateTax(paymentSystem, monthlySum, dailySum, amount)
         assertEquals(35,result)
     }
+
 
     //13 "Visa", "MIR" (amount * 0.0075 < 35)
     @Test
@@ -185,5 +186,6 @@ class MainKtTest {
         var result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
         assertEquals(false,result)
     }
+    
 
 }
