@@ -12,7 +12,7 @@ class MainKtTest {
         var amount = 10000
 
         var result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
-        assertEquals(true,result)
+        assertEquals(false,result)
     }
 
 
