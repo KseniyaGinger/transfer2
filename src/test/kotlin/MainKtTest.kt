@@ -1,174 +1,189 @@
-import org.junit.Test
-
 import org.junit.Assert.*
+import org.junit.Test
 
 class MainKtTest {
 
+    //1 "Mastercard", "Maestro", "Visa", "MIR" (monthlySum + dailySum + amount > 600000)
     @Test
-    fun calculateTaxMaestroMastercard() {
-        var paymentSystem = "Maestro"
-        var monthlySum = 10_000
-        var dailySum = 50_000
-        var amount = 20_000
-
-        val result = calculateTax(paymentSystem, monthlySum, dailySum, amount)
-
-        assertEquals(140, result)
-    }
-
-    @Test
-    fun calculateTaxVisaMir() {
-        var paymentSystem = "Visa"
-        var monthlySum = 10000
-        var dailySum = 200
-        var amount = 750
-
-        val result = calculateTax(paymentSystem, monthlySum, dailySum, amount)
-
-        assertEquals(35, result)
-    }
-
-    @Test
-    fun testCalculateTax_UnknownPaymentSystem() {
-        val paymentSystem = "Unknown"
-        val monthlySum = 10000
-        val dailySum = 200
-        val amount = 750
-
-        val result = calculateTax(paymentSystem, monthlySum, dailySum, amount)
-        assertEquals(0, result)
-    }
-    @Test
-    fun calculateTaxShouldTakeTax() {
-        var paymentSystem = "VK Pay"
-        var monthlySum = 10000
-        var dailySum = 200
-        var amount = 750
-
-        val result = calculateTax(paymentSystem, monthlySum, dailySum, amount)
-
-        assertEquals(0, result)
-    }
-
-    @Test
-    fun checkLimitsPaymentSystem() {
-        var paymentSystem = "Union Pay"
-        var monthlySum = 10000
-        var dailySum = 200
-        var amount = 750
-
-        val result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
-
-        assertEquals(false, result)
-    }
-    @Test
-    fun checkLimitsDaily() {
+    fun checkLimits_1() {
         var paymentSystem = "Mastercard"
-        var monthlySum = 0
-        var dailySum = 10000
-        var amount = 750
-
-        val result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
-
-        assertEquals(true, result)
-    }
-    @Test
-    fun checkLimitsMonthly() {
-        var paymentSystem = "Mastercard"
-        var monthlySum = 579000
-        var dailySum = 20000
-        var amount = 750
-
-        val result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
-
-        assertEquals(true, result)
-    }
-    @Test
-    fun checkLimitsMonthlyVKPay() {
-        var paymentSystem = "VK Pay"
-        var monthlySum = 30000
-        var dailySum = 0
-        var amount = 9000
-
-        val result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
-
-        assertEquals(true, result)
-    }
-
-    @Test
-    fun checkLimitsVKPay() {
-        var paymentSystem = "VK Pay"
-        var monthlySum = 0
-        var dailySum = 0
+        var monthlySum = 500000
+        var dailySum = 100000
         var amount = 10000
 
-        val result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
-
-        assertEquals(true, result)
+        var result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
+        assertEquals(false,result)
     }
-    @Test
-    fun testCheckLimits_Mastercard_Maestro_MonthlyLimit() {
-        val paymentSystem = "Mastercard"
-        val monthlySum = 580000
-        val dailySum = 1000
-        val amount = 3000
 
-        val result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
+
+    //2 "Mastercard", "Maestro", "Visa", "MIR" (monthlySum + dailySum + amount < 600000)
+    @Test
+    fun checkLimits_2() {
+        var paymentSystem = "Maestro"
+        var monthlySum = 50000
+        var dailySum = 10000
+        var amount = 10000
+
+        var result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
         assertEquals(true,result)
     }
 
-    @Test
-    fun testCheckLimits_Mastercard_Maestro_DailyLimit() {
-        val paymentSystem = "Mastercard"
-        val monthlySum = 20000
-        val dailySum = 15000
-        val amount = 3000
 
-        val result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
+    //3 "Mastercard", "Maestro", "Visa", "MIR" (dailySum + amount > 150000)
+    @Test
+    fun checkLimits_3() {
+        var paymentSystem = "Visa"
+        var monthlySum = 50000
+        var dailySum = 10000
+        var amount = 200000
+
+        var result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
+        assertEquals(false,result)
+    }
+
+    //4 "Mastercard", "Maestro", "Visa", "MIR" (dailySum + amount < 150000)
+    @Test
+    fun checkLimits_4() {
+        var paymentSystem = "MIR"
+        var monthlySum = 50000
+        var dailySum = 10000
+        var amount = 20000
+
+        var result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
         assertEquals(true,result)
     }
 
+    //5 "VK Pay" (monthlySum + dailySum + amount > 40000)
     @Test
-    fun testCheckLimits_VKPay_MonthlyLimit() {
-        val paymentSystem = "VK Pay"
-        val monthlySum = 45000
-        val dailySum = 1000
-        val amount = 3000
+    fun checkLimits_5() {
+        var paymentSystem = "VK Pay"
+        var monthlySum = 20000
+        var dailySum = 10000
+        var amount = 15000
 
-        val result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
-        assertFalse(result)
+        var result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
+        assertEquals(false,result)
     }
 
+    //6 "VK Pay" (monthlySum + dailySum + amount < 40000)
     @Test
-    fun testCheckLimits_VKPay_AmountLimit() {
-        val paymentSystem = "VK Pay"
-        val monthlySum = 20000
-        val dailySum = 1000
-        val amount = 16000
+    fun checkLimits_6() {
+        var paymentSystem = "VK Pay"
+        var monthlySum = 2000
+        var dailySum = 1000
+        var amount = 1500
 
-        val result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
-        assertFalse(result)
+        var result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
+        assertEquals(true,result)
     }
 
+    //7 "VK Pay" (amount > 15000)
     @Test
-    fun testCheckLimits_UnknownPaymentSystem() {
-        val paymentSystem = "Unknown"
-        val monthlySum = 10000
-        val dailySum = 200
-        val amount = 750
+    fun checkLimits_7() {
+        var paymentSystem = "VK Pay"
+        var monthlySum = 2000
+        var dailySum = 1000
+        var amount = 25000
 
-        val result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
-        assertFalse(result)
+        var result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
+        assertEquals(false,result)
     }
 
+    //8 "VK Pay" (amount < 15000)
     @Test
-    fun testCheckLimits_PassingLimits() {
-        val paymentSystem = "MIR"
-        val monthlySum = 50000
-        val dailySum = 1000
-        val amount = 3000
+    fun checkLimits_8() {
+        var paymentSystem = "VK Pay"
+        var monthlySum = 2000
+        var dailySum = 1000
+        var amount = 2500
 
-        val result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
-        assertTrue(result)
+        var result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
+        assertEquals(true,result)
     }
+
+    //9 "Неизвестная платежная система"
+    @Test
+    fun checkLimits_9() {
+        var paymentSystem = "Unknown"
+        var monthlySum = 2000
+        var dailySum = 1000
+        var amount = 2500
+
+        var result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
+        assertEquals(false,result)
+    }
+
+
+    //10 "Mastercard", "Maestro" (monthlySum + dailySum + amount > 75000)
+    @Test
+    fun calculateTax() {
+        var paymentSystem = "Mastercard"
+        var monthlySum = 50000
+        var dailySum = 10000
+        var amount = 20000
+
+        var result = calculateTax(paymentSystem, monthlySum, dailySum, amount)
+        assertEquals(140,result)
+    }
+
+    //11 "Mastercard", "Maestro" (monthlySum + dailySum + amount < 75000)
+    @Test
+    fun calculateTax_1() {
+        var paymentSystem = "Maestro"
+        var monthlySum = 50000
+        var dailySum = 10000
+        var amount = 2000
+
+        var result = calculateTax(paymentSystem, monthlySum, dailySum, amount)
+        assertEquals(0,result)
+    }
+
+    //12 "Visa", "MIR" (amount * 0.0075 >= 35)
+    @Test
+    fun calculateTax_2() {
+        var paymentSystem = "Visa"
+        var monthlySum = 50000
+        var dailySum = 10000
+        var amount = 2000
+
+        var result = calculateTax(paymentSystem, monthlySum, dailySum, amount)
+        assertEquals(35,result)
+    }
+
+    //13 "Visa", "MIR" (amount * 0.0075 < 35)
+    @Test
+    fun calculateTax_3() {
+        var paymentSystem = "MIR"
+        var monthlySum = 5000
+        var dailySum = 1000
+        var amount = 20000
+
+        var result = calculateTax(paymentSystem, monthlySum, dailySum, amount)
+        assertEquals(150,result)
+    }
+
+
+    //14 "VK Pay"
+    @Test
+    fun calculateTax_4() {
+        var paymentSystem = "VK Pay"
+        var monthlySum = 5000
+        var dailySum = 1000
+        var amount = 2000
+
+        var result = calculateTax(paymentSystem, monthlySum, dailySum, amount)
+        assertEquals(0,result)
+    }
+    //15 "Unknown"
+    @Test
+    fun calculateTax_5() {
+        var paymentSystem = "Unknown"
+        var monthlySum = 5000
+        var dailySum = 1000
+        var amount = 2000
+
+        var result = checkLimits(paymentSystem, monthlySum, dailySum, amount)
+        assertEquals(false,result)
+    }
+
 }

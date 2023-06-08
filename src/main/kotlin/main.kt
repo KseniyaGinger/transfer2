@@ -23,7 +23,7 @@ if (checkLimits(paymentSystem, monthlySum, dailySum, amount)) {
                 }
             }
             "VK Pay" -> {
-                if (monthlySum + amount > 40000) {
+                if (monthlySum + dailySum + amount > 40000) {
                     println("Превышен месячный лимит переводов")
                     return false
                 }
